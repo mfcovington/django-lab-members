@@ -15,7 +15,7 @@ class Position(models.Model):
     )
 
     def __str__(self):
-        pass
+        return self.title
 
 
 class Scientist(models.Model):
@@ -47,5 +47,5 @@ class Scientist(models.Model):
     )
 
     def __str__(self):
-        pass
+        return self.full_name
 
