@@ -7,6 +7,6 @@ class PositionAdmin(admin.ModelAdmin):
 admin.site.register(Position, PositionAdmin)
 
 class ScientistAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("full_name",)}
 
 admin.site.register(Scientist, ScientistAdmin)
