@@ -9,6 +9,7 @@ admin.site.register(Position, PositionAdmin)
 class ScientistAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic Info', {'fields': ['full_name', 'title']}),
+        ('Bio',        {'fields': ['personal_interests', 'research_interests']}),
         ('Advanced',   {'fields': ['slug'], 'classes': ['collapse']}),
     ]
 

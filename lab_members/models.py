@@ -46,6 +46,18 @@ class Scientist(models.Model):
         null=True,
     )
 
+    personal_interests = models.TextField(u'personal interests',
+        blank=True,
+        default='',
+        help_text=u'Please write a personal interests blurb for this scientist'
+    )
+
+    research_interests = models.TextField(u'research interests',
+        blank=True,
+        default='',
+        help_text=u'Please write a research interests blurb for this scientist'
+    )
+
     def __str__(self):
         return self.full_name
 
