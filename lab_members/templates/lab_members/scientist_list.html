@@ -1,0 +1,14 @@
+{% extends "lab_members/base.html" %}
+
+{% block content %}
+  <h1>Lab Members</h1>
+  {% if scientist_list %}
+    <ul>
+      {% for scientist in scientist_list %}
+        <li><a href="{% url 'lab_members:scientist_detail' scientist.slug %}">{{ scientist.full_name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Need to add lab members!</p>
+  {% endif %}
+{% endblock content %}
