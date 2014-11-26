@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import DetailView, ListView
+from lab_members.models import Scientist
 
-# Create your views here.
+class ScientistListView(ListView):
+    model = Scientist
+    queryset = Scientist.objects.all()
+
+class ScientistDetailView(DetailView):
+    model = Scientist
