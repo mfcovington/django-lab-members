@@ -135,6 +135,13 @@ class Education(models.Model):
 
     scientist = models.ForeignKey('lab_members.Scientist')
 
+    advisor = models.CharField(u'advisor',
+        null=True,
+        blank=True,
+        help_text=u"Please enter advisor's name",
+        max_length=64,
+    )
+
     def tuplify(x): return (x,x)
     current_year = datetime.now().year
     YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
