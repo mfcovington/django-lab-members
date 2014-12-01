@@ -117,7 +117,7 @@ class Advisor(models.Model):
         verbose_name = "Advisor"
         verbose_name_plural = "Advisors"
 
-    full_name = models.CharField(u'advisor n',
+    full_name = models.CharField(u'advisor name',
         help_text=u"Please enter advisor's name",
         max_length=64,
         unique=True,
