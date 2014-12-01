@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Position(models.Model):
 
@@ -108,3 +109,61 @@ class Field(models.Model):
 
     def __str__(self):
         return self.label
+
+
+class Education(models.Model):
+
+    class Meta:
+        verbose_name = "Educational record"
+        verbose_name_plural = "Educational records"
+
+    institution = models.ForeignKey('lab_members.Institution',
+        help_text=u'Please enter the institution attended',
+    )
+
+    degree = models.ForeignKey(u'lab_members.Degree',
+        null=True,
+        blank=True,
+        help_text=u'Please specify the degree granted',
+    )
+
+    field = models.ForeignKey(u'lab_members.Field',
+        null=True,
+        blank=True,
+        help_text=u'Please specify the field studied',
+    )
+
+    scientist = models.ForeignKey('lab_members.Scientist')
+
+    def tuplify(x): return (x,x)
+    current_year = datetime.now().year
+    YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
+    YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
+
+    year_start = models.IntegerField(u'year started',
+        null=True,
+        blank=True,
+        choices=YEARS_A,
+        help_text=u'Please specify the year started',
+        max_length=4,
+    )
+
+    year_end = models.IntegerField(u'year degree granted (or study ended)',
+        null=True,
+        blank=True,
+        choices=YEARS_B,
+        help_text=u'Please specify the year finished',
+        max_length=4,
+    )
+
+    def __str__(self):
+        if self.year_start and self.year_end:
+            years = " - ".join([str(self.year_start), str(self.year_end)])
+        elif self.year_start:
+            years = " - ".join([str(self.year_start), "Present"])
+        elif self.year_end:
+            years = str(self.year_end)
+        else:
+            years = "No dates given"
+
+        return years

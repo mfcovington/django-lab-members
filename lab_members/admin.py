@@ -1,10 +1,16 @@
 from django.contrib import admin
-from lab_members.models import Position, Scientist, Institution, Degree, Field
+from lab_members.models import Position, Scientist, Institution, Degree, Field, Education
 
 class PositionAdmin(admin.ModelAdmin):
     search_fields = ['title']
 
 admin.site.register(Position, PositionAdmin)
+
+
+class EducationInline(admin.TabularInline):
+    model = Education
+    extra = 3
+
 
 class ScientistAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -12,6 +18,8 @@ class ScientistAdmin(admin.ModelAdmin):
         ('Bio',        {'fields': ['personal_interests', 'research_interests']}),
         ('Advanced',   {'fields': ['slug'], 'classes': ['collapse']}),
     ]
+
+    inlines = [EducationInline]
 
     list_display = ['full_name', 'title']
     list_filter = ['title']
