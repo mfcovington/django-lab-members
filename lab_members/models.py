@@ -111,6 +111,22 @@ class Field(models.Model):
         return self.label
 
 
+class Advisor(models.Model):
+
+    class Meta:
+        verbose_name = "Advisor"
+        verbose_name_plural = "Advisors"
+
+    full_name = models.CharField(u'advisor n',
+        help_text=u"Please enter advisor's name",
+        max_length=64,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.full_name
+
+
 class Education(models.Model):
 
     class Meta:
@@ -135,11 +151,10 @@ class Education(models.Model):
 
     scientist = models.ForeignKey('lab_members.Scientist')
 
-    advisor = models.CharField(u'advisor',
+    advisor = models.ForeignKey('lab_members.Advisor',
         null=True,
         blank=True,
-        help_text=u"Please enter advisor's name",
-        max_length=64,
+        help_text=u"Please specify advisor's name",
     )
 
     def tuplify(x): return (x,x)
@@ -198,11 +213,10 @@ class Employment(models.Model):
 
     scientist = models.ForeignKey('lab_members.Scientist')
 
-    advisor = models.CharField(u'advisor',
+    advisor = models.ForeignKey('lab_members.Advisor',
         null=True,
         blank=True,
-        help_text=u"Please enter advisor's name",
-        max_length=64,
+        help_text=u"Please specify advisor's name",
     )
 
     def tuplify(x): return (x,x)
