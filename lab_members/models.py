@@ -226,13 +226,12 @@ class Employment(models.Model):
 
     year_start = models.IntegerField(u'year started',
         null=True,
-        blank=True,
         choices=YEARS_A,
         help_text=u'Please specify the year started',
         max_length=4,
     )
 
-    year_end = models.IntegerField(u'year degree granted (or study ended)',
+    year_end = models.IntegerField(u'year ended',
         null=True,
         blank=True,
         choices=YEARS_B,
@@ -246,7 +245,7 @@ class Employment(models.Model):
         elif self.year_start:
             years = " - ".join([str(self.year_start), "Present"])
         elif self.year_end:
-            years = str(self.year_end)
+            years = "'Year started' is required"    # This should never happen
         else:
             years = "No dates given"
 
