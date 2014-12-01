@@ -47,6 +47,11 @@ class Scientist(models.Model):
         null=True,
     )
 
+    email = models.EmailField(u'email address',
+        null=True,
+        help_text=u'Please enter email address',
+    )
+
     personal_interests = models.TextField(u'personal interests',
         blank=True,
         default='',
