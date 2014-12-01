@@ -76,3 +76,19 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Degree(models.Model):
+
+    class Meta:
+        verbose_name = "Degree"
+        verbose_name_plural = "Degrees"
+
+    title = models.CharField(u'degree title',
+        help_text=u'Please enter a degree type',
+        max_length=64,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.title
