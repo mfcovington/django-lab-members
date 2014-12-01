@@ -1,5 +1,5 @@
 from django.contrib import admin
-from lab_members.models import Position, Scientist, Institution, Degree, Field, Education
+from lab_members.models import Position, Scientist, Institution, Degree, Field, Education, Employment
 
 class PositionAdmin(admin.ModelAdmin):
     search_fields = ['title']
@@ -12,6 +12,11 @@ class EducationInline(admin.TabularInline):
     extra = 3
 
 
+class EmploymentInline(admin.TabularInline):
+    model = Employment
+    extra = 3
+
+
 class ScientistAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic Info', {'fields': ['full_name', 'title']}),
@@ -19,7 +24,7 @@ class ScientistAdmin(admin.ModelAdmin):
         ('Advanced',   {'fields': ['slug'], 'classes': ['collapse']}),
     ]
 
-    inlines = [EducationInline]
+    inlines = [EducationInline, EmploymentInline]
 
     list_display = ['full_name', 'title']
     list_filter = ['title']
