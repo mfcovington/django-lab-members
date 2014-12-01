@@ -1,5 +1,5 @@
 from django.contrib import admin
-from lab_members.models import Position, Scientist
+from lab_members.models import Position, Scientist, Institution
 
 class PositionAdmin(admin.ModelAdmin):
     search_fields = ['title']
@@ -20,5 +20,11 @@ class ScientistAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("full_name",)}
 
 admin.site.register(Scientist, ScientistAdmin)
+
+
+class InstitutionAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Institution, InstitutionAdmin)
 
 admin.site.site_header = 'Lab Member Administration'

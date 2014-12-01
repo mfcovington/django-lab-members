@@ -61,3 +61,18 @@ class Scientist(models.Model):
     def __str__(self):
         return self.full_name
 
+
+class Institution(models.Model):
+
+    class Meta:
+        verbose_name = "Institution"
+        verbose_name_plural = "Institutions"
+
+    name = models.CharField(u'institution name',
+        help_text=u'Please enter the institution attended',
+        max_length=64,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.name
