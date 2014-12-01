@@ -1,5 +1,5 @@
 from django.contrib import admin
-from lab_members.models import Position, Scientist, Institution, Degree
+from lab_members.models import Position, Scientist, Institution, Degree, Field
 
 class PositionAdmin(admin.ModelAdmin):
     search_fields = ['title']
@@ -32,5 +32,11 @@ class DegreeAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Degree, DegreeAdmin)
+
+
+class FieldAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Field, FieldAdmin)
 
 admin.site.site_header = 'Lab Member Administration'

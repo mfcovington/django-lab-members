@@ -92,3 +92,19 @@ class Degree(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Field(models.Model):
+
+    class Meta:
+        verbose_name = "Field"
+        verbose_name_plural = "Fields"
+
+    label = models.CharField(u'field of study',
+        help_text=u'Please enter a field of study',
+        max_length=64,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.label
