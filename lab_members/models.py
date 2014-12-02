@@ -128,6 +128,12 @@ class Advisor(models.Model):
         unique=True,
     )
 
+    url = models.URLField(u'advisor website',
+        null=True,
+        blank=True,
+        help_text=u"Please enter advisor's website",
+    )
+
     def __str__(self):
         return self.full_name
 
