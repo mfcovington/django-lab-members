@@ -1,0 +1,3 @@
+<li>
+  <a href="{% url 'lab_members:scientist_detail' scientist.slug %}">{{ scientist.full_name }}</a>{% if scientist.title %}, {{ scientist.title }}{% endif %}
+</li>
