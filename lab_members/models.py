@@ -4,6 +4,7 @@ from datetime import datetime
 class Position(models.Model):
 
     class Meta:
+        ordering = ['title']
         verbose_name = "Position"
         verbose_name_plural = "Positions"
 
@@ -22,6 +23,7 @@ class Position(models.Model):
 class Scientist(models.Model):
 
     class Meta:
+        ordering = ['full_name']
         verbose_name = "Scientist"
         verbose_name_plural = "Scientists"
 
@@ -71,6 +73,7 @@ class Scientist(models.Model):
 class Institution(models.Model):
 
     class Meta:
+        ordering = ['name']
         verbose_name = "Institution"
         verbose_name_plural = "Institutions"
 
@@ -87,6 +90,7 @@ class Institution(models.Model):
 class Degree(models.Model):
 
     class Meta:
+        ordering = ['title']
         verbose_name = "Degree"
         verbose_name_plural = "Degrees"
 
@@ -103,6 +107,7 @@ class Degree(models.Model):
 class Field(models.Model):
 
     class Meta:
+        ordering = ['label']
         verbose_name = "Field"
         verbose_name_plural = "Fields"
 
@@ -119,6 +124,7 @@ class Field(models.Model):
 class Advisor(models.Model):
 
     class Meta:
+        ordering = ['full_name']
         verbose_name = "Advisor"
         verbose_name_plural = "Advisors"
 
@@ -141,6 +147,7 @@ class Advisor(models.Model):
 class Education(models.Model):
 
     class Meta:
+        ordering = ['-year_start', '-year_end']
         verbose_name = "Educational record"
         verbose_name_plural = "Educational records"
 
@@ -205,6 +212,7 @@ class Education(models.Model):
 class Employment(models.Model):
 
     class Meta:
+        ordering = ['-year_start', '-year_end']
         verbose_name = "Employmental record"
         verbose_name_plural = "Employmental records"
 
