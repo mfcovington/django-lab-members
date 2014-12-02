@@ -2,7 +2,52 @@
 
 {% block content %}
   <h1>{{ scientist.full_name }}</h1>
-  <h2>{{ scientist.title }}</h2>
-  <p>{{ scientist.personal_interests }}</p>
-  <p>{{ scientist.research_interests }}</p>
+  {% if scientist.title %}
+    <h3>{{ scientist.title }}</h3>
+  {% endif %}
+  <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+
+  {% if not scientist.current %}
+    <p><em>Former lab member</em></p>
+  {% endif %}
+
+  {% if scientist.personal_interests %}
+    <h2>Personal Interests</h2>
+    <p>{{ scientist.personal_interests }}</p>
+  {% endif %}
+
+  {% if scientist.research_interests %}
+    <h2>Research Interests</h2>
+    <p>{{ scientist.research_interests }}</p>
+  {% endif %}
+
+  {% if scientist.education_set.exists %}
+    <h2>Professional Preparation</h2>
+    <ul>
+      {% for education in scientist.education_set.all %}
+        <li>
+          {% if education.degree %}<strong>{{ education.degree }}</strong> -{% endif %}
+          {% if education.field %}{{ education.field }} -{% endif %}
+          {{ education.institution }} ({{ education }})
+          {% if education.advisor %}- {{ education.advisor }}{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if scientist.employment_set.exists %}
+    <h2>Academic and Professional Appointments</h2>
+    <ul>
+      {% for employment in scientist.employment_set.all %}
+        <li>
+          {% if employment.position %}<strong>{{ employment.position }}</strong> -{% endif %}
+          {% if employment.field %}{{ employment.field }} -{% endif %}
+          {{ employment.institution }} ({{ employment }})
+          {% if employment.advisor %}- {{ employment.advisor }}{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+
 {% endblock content %}
