@@ -3,7 +3,12 @@ from lab_members.models import Scientist
 
 class ScientistListView(ListView):
     model = Scientist
-    queryset = Scientist.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ScientistListView, self).get_context_data(**kwargs)
+        context['scientist_list'] = Scientist.objects.filter(current=True)
+        context['alumni_list'] = Scientist.objects.filter(current=False)
+        return context
 
 class ScientistDetailView(DetailView):
     model = Scientist
