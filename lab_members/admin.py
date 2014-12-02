@@ -26,6 +26,7 @@ class ScientistAdmin(admin.ModelAdmin):
 
     inlines = [EducationInline, EmploymentInline]
 
+    list_display = ['full_name', 'title', 'email']
     list_filter = ['title']
     search_fields = ['full_name']
 
