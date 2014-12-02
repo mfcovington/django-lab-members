@@ -54,6 +54,11 @@ class Scientist(models.Model):
         help_text=u'Please enter email address',
     )
 
+    current = models.BooleanField(u'current lab member',
+        default=True,
+        help_text=u'Please specify whether scientist is a current lab member',
+    )
+
     personal_interests = models.TextField(u'personal interests',
         blank=True,
         default='',
