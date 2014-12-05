@@ -59,6 +59,12 @@ class Scientist(models.Model):
         help_text=u'Please specify whether scientist is a current lab member',
     )
 
+    alumni_redirect_url = models.URLField(u'alumni redirect URL',
+        null=True,
+        blank=True,
+        help_text=u"If former lab member, please enter the scientist's new URL"
+    )
+
     personal_interests = models.TextField(u'personal interests',
         blank=True,
         default='',
