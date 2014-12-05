@@ -6,7 +6,7 @@ class ScientistListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ScientistListView, self).get_context_data(**kwargs)
-        context['scientist_list'] = Scientist.objects.filter(current=True)
+        context['current_list'] = Scientist.objects.filter(current=True)
         context['alumni_list'] = Scientist.objects.filter(current=False)
         return context
 
