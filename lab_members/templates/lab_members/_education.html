@@ -17,17 +17,15 @@
             <tbody>
               {% for education in scientist.education_set.all %}
                 <tr>
-                  <td>{% if education.degree %}{{ education.degree }}{% endif %}</td>
-                  <td>{% if education.field %}{{ education.field }}{% endif %}</td>
-                  <td>{% if education.institution %}{{ education.institution }}{% endif %}</td>
+                  <td>{{ education.degree|default:"" }}</td>
+                  <td>{{ education.field|default:"" }}</td>
+                  <td>{{ education.institution|default:"" }}</td>
                   <td>{{ education }}</td>
                   <td>
-                    {% if education.advisor %}
-                      {% if education.advisor.url %}
-                        <a href="{{ education.advisor.url }}">{{ education.advisor }}</a>
-                      {% else %}
-                        {{ education.advisor }}
-                      {% endif %}
+                    {% if education.advisor.url %}
+                      <a href="{{ education.advisor.url }}">{{ education.advisor }}</a>
+                    {% else %}
+                      {{ education.advisor|default:"" }}
                     {% endif %}
                   </td>
                 </tr>

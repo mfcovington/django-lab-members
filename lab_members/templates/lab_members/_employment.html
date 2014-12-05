@@ -17,17 +17,15 @@
             <tbody>
               {% for employment in scientist.employment_set.all %}
                 <tr>
-                  <td>{% if employment.position %}{{ employment.position }}{% endif %}</td>
-                  <td>{% if employment.field %}{{ employment.field }}{% endif %}</td>
-                  <td>{% if employment.institution %}{{ employment.institution }}{% endif %}</td>
+                  <td>{{ employment.position|default:"" }}</td>
+                  <td>{{ employment.field|default:"" }}</td>
+                  <td>{{ employment.institution|default:"" }}</td>
                   <td>{{ employment }}</td>
                   <td>
-                    {% if employment.advisor %}
-                      {% if employment.advisor.url %}
-                        <a href="{{ employment.advisor.url }}">{{ employment.advisor }}</a>
-                      {% else %}
-                        {{ employment.advisor }}
-                      {% endif %}
+                    {% if employment.advisor.url %}
+                      <a href="{{ employment.advisor.url }}">{{ employment.advisor }}</a>
+                    {% else %}
+                      {{ employment.advisor|default:"" }}
                     {% endif %}
                   </td>
                 </tr>
