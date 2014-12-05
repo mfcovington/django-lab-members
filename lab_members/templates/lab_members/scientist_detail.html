@@ -1,53 +1,30 @@
 {% extends "lab_members/base.html" %}
 
 {% block content %}
-  <h1>{{ scientist.full_name }}</h1>
-  {% if scientist.title %}
-    <h3>{{ scientist.title }}</h3>
-  {% endif %}
-  <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
 
-  {% if not scientist.current %}
-    <p><em>Former lab member</em></p>
-  {% endif %}
+  <div class="row">
+    {% include "lab_members/_alumni.html" %}
 
-  {% if scientist.personal_interests %}
-    <h2>Personal Interests</h2>
-    <p>{{ scientist.personal_interests }}</p>
-  {% endif %}
+    <div class="col-sm-12 col-lg-3">
+      <div class="row text-center">
 
-  {% if scientist.research_interests %}
-    <h2>Research Interests</h2>
-    <p>{{ scientist.research_interests }}</p>
-  {% endif %}
+        <img class="group list-group-image" src={% if scientist.photo %}"{{ scientist.photo }}"{% else %}"http://placehold.it/300x300"{% endif %} alt="{{ scientist.full_name }}">
+        <h2>{{ scientist.full_name }}</h2>
 
-  {% if scientist.education_set.exists %}
-    <h2>Professional Preparation</h2>
-    <ul>
-      {% for education in scientist.education_set.all %}
-        <li>
-          {% if education.degree %}<strong>{{ education.degree }}</strong> -{% endif %}
-          {% if education.field %}{{ education.field }} -{% endif %}
-          {{ education.institution }} ({{ education }})
-          {% if education.advisor %}- {{ education.advisor }}{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+        {% if scientist.title %}
+          <h4>{{ scientist.title }}</h4>
+        {% endif %}
 
-  {% if scientist.employment_set.exists %}
-    <h2>Academic and Professional Appointments</h2>
-    <ul>
-      {% for employment in scientist.employment_set.all %}
-        <li>
-          {% if employment.position %}<strong>{{ employment.position }}</strong> -{% endif %}
-          {% if employment.field %}{{ employment.field }} -{% endif %}
-          {{ employment.institution }} ({{ employment }})
-          {% if employment.advisor %}- {{ employment.advisor }}{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+        <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+      </div>
+    </div>
 
+    <div class="col-sm-12 col-lg-9">
+      {% include "lab_members/_employment.html" %}
+      {% include "lab_members/_education.html" %}
+      {% include "lab_members/_personal.html" %}
+      {% include "lab_members/_research.html" %}
+    </div>
+  </div>
 
 {% endblock content %}

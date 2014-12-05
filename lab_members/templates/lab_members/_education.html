@@ -1,0 +1,41 @@
+{% if scientist.education_set.exists %}
+  <div class="container-fluid">
+    <h4>Education</h4>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="active">Degree</th>
+                <th class="active">Field</th>
+                <th class="active">Institution</th>
+                <th class="active">Year(s)</th>
+                <th class="active">Advisor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for education in scientist.education_set.all %}
+                <tr>
+                  <td>{% if education.degree %}{{ education.degree }}{% endif %}</td>
+                  <td>{% if education.field %}{{ education.field }}{% endif %}</td>
+                  <td>{% if education.institution %}{{ education.institution }}{% endif %}</td>
+                  <td>{{ education }}</td>
+                  <td>
+                    {% if education.advisor %}
+                      {% if education.advisor.url %}
+                        <a href="{{ education.advisor.url }}">{{ education.advisor }}</a>
+                      {% else %}
+                        {{ education.advisor }}
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

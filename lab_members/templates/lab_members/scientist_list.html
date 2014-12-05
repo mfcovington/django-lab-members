@@ -2,24 +2,30 @@
 
 {% block content %}
 
-  <h1>Lab Members</h1>
-  {% if scientist_list %}
-    <ul>
-      {% for scientist in scientist_list %}
-        {% include "lab_members/_scientist_list_item.html" %}
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>Need to add lab members!</p>
-  {% endif %}
+  <h1 class="text-center">Lab Members</h1>
+  <div class="container-fluid">
+    <div id="lab-members" class="row">
+      {% if scientist_list %}
+        {% for scientist in scientist_list %}
+          {% include "lab_members/_scientist_list_item.html" %}
+        {% endfor %}
+      {% else %}
+        <p>Need to add lab members!</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <hr>
 
   {% if alumni_list %}
-  <h1>Lab Alumni</h1>
-    <ul>
-      {% for scientist in alumni_list %}
-        {% include "lab_members/_scientist_list_item.html" %}
-      {% endfor %}
-    </ul>
+    <h1 class="text-center">Lab Alumni</h1>
+    <div class="container-fluid">
+      <div id="lab-members" class="row">
+        {% for scientist in alumni_list %}
+          {% include "lab_members/_scientist_list_item.html" %}
+        {% endfor %}
+      </div>
+    </div>
   {% endif %}
 
 {% endblock content %}
