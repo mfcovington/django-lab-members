@@ -38,7 +38,11 @@ DEFAULT_APPS = (
     'django.contrib.staticfiles',
 )
 
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'easy_thumbnails',
+    'filer',
+    'mptt',
+)
 
 LOCAL_APPS = (
     'lab_members',
@@ -89,3 +93,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# For filer's Django 1.7 compatibility
+MIGRATION_MODULES = {
+    'filer': 'filer.migrations_django',
+}
+
+# For easy_thumbnails to support retina displays (recent MacBooks, iOS)
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_QUALITY = 95
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+THUMBNAIL_PRESERVE_EXTENSIONS = ('png', 'gif')
+THUMBNAIL_SUBDIR = 'versions'

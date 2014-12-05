@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from filer.fields.image import FilerImageField
 
 class Position(models.Model):
 
@@ -75,6 +76,12 @@ class Scientist(models.Model):
         blank=True,
         default='',
         help_text=u'Please write a research interests blurb for this scientist'
+    )
+
+    photo = FilerImageField(
+        null=True,
+        blank=True,
+        help_text=u'Please upload an photo of this scientist',
     )
 
     def __str__(self):

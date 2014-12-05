@@ -1,4 +1,5 @@
 {% extends "lab_members/base.html" %}
+{% load thumbnail %}
 
 {% block content %}
 
@@ -8,7 +9,12 @@
     <div class="col-sm-12 col-lg-3">
       <div class="row text-center">
 
-        <img src={{ scientist.photo|default:"http://placehold.it/300x300" }} alt={{ scientist.full_name }}>
+        {% if scientist.photo %}
+          <img src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
+        {% else %}
+          <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
+        {% endif %}
+
         <h2>{{ scientist.full_name }}</h2>
 
         {% if scientist.title %}
