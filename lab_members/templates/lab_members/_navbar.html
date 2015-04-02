@@ -16,7 +16,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="{% url 'lab_members:scientist_list' %}">Lab Members</a></li>
+      </ul>
 
+      <ul class="nav navbar-nav navbar-right user-tools">
         {% if user.is_authenticated %}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -30,11 +32,7 @@
               {% endif %}
             </ul>
           </li>
-        {% endif %}
-      </ul>
 
-      <ul class="nav navbar-nav navbar-right user-tools">
-        {% if user.is_authenticated %}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {% firstof user.email user.get_username %} <span class="caret"></span>
