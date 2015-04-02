@@ -32,6 +32,50 @@
           </li>
         {% endif %}
       </ul>
+
+      <ul class="nav navbar-nav navbar-right user-tools">
+        {% if user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {% firstof user.email user.get_username %} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{% url 'admin:lab_members_scientist_change' user.id %}">
+                  Edit Account Info
+                </a>
+              </li>
+
+              {# Add link to edit current user's page #}
+              <li>
+                <a href="#">
+                  Edit Lab Member Page
+                </a>
+              </li>
+
+              {% if user.has_usable_password %}
+                <li>
+                  <a href="{% url 'admin:password_change' %}">
+                    Change Password
+                  </a>
+                </li>
+              {% endif %}
+
+              <li class="divider"></li>
+
+              <li>
+                <a href="{% url 'admin:logout' %}">
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </li>
+        {% else %}
+          <li>
+            <a href="{% url 'admin:login' %}">Log In</a>
+          </li>
+        {% endif %}
+      </ul>
     </div><!-- /.navbar-collapse -->
 
   </div>
