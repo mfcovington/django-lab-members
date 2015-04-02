@@ -17,18 +17,20 @@
       <ul class="nav navbar-nav">
         <li><a href="{% url 'lab_members:scientist_list' %}">Lab Members</a></li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url 'admin:index' %}">Site Admin</a></li>
-            <li><a href="{% url 'admin:lab_members_scientist_changelist' %}">Scientist Admin</a></li>
-            <li class="divider"></li>
-            <li><a href="{% url 'admin:lab_members_scientist_add' %}">Add New Scientist</a></li>
-            {% if scientist %}
-                <li><a href="{% url 'admin:lab_members_scientist_change' scientist.id %}">Edit Current Scientist</a></li>
-            {% endif %}
-          </ul>
-        </li>
+        {% if user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{% url 'admin:index' %}">Site Admin</a></li>
+              <li><a href="{% url 'admin:lab_members_scientist_changelist' %}">Scientist Admin</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url 'admin:lab_members_scientist_add' %}">Add New Scientist</a></li>
+              {% if scientist %}
+                  <li><a href="{% url 'admin:lab_members_scientist_change' scientist.id %}">Edit Current Scientist</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        {% endif %}
       </ul>
     </div><!-- /.navbar-collapse -->
 
