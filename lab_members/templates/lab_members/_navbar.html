@@ -64,7 +64,7 @@
               <li class="divider"></li>
 
               <li>
-                <a href="{% url 'admin:logout' %}">
+                <a href="{% url 'admin:logout' %}?next={{ request.path }}">
                   Log Out
                 </a>
               </li>
@@ -72,7 +72,7 @@
           </li>
         {% else %}
           <li>
-            <a href="{% url 'admin:login' %}">Log In</a>
+            <a href="{% url 'admin:login' %}?next={{ request.path }}">Log In</a>
           </li>
         {% endif %}
       </ul>
