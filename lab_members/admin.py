@@ -18,10 +18,33 @@ class EmploymentInline(admin.TabularInline):
 
 
 class ScientistAdmin(admin.ModelAdmin):
+    fieldset_basic = ('Basic Info', {
+        'fields': [
+            'full_name',
+            'email',
+            'title',
+            'photo',
+            'current',
+            'alumni_redirect_url',
+        ]
+    })
+
+    fieldset_bio = ('Bio', {
+        'fields': [
+            'personal_interests',
+            'research_interests',
+        ],
+    })
+
+    fieldset_advanced = ('Advanced', {
+        'fields': ['slug'],
+        'classes': ['collapse'],
+    })
+
     fieldsets = [
-        ('Basic Info', {'fields': ['full_name', 'email', 'title', 'photo', 'current', 'alumni_redirect_url']}),
-        ('Bio',        {'fields': ['personal_interests', 'research_interests']}),
-        ('Advanced',   {'fields': ['slug'], 'classes': ['collapse']}),
+        fieldset_basic,
+        fieldset_bio,
+        fieldset_advanced,
     ]
 
     inlines = [EducationInline, EmploymentInline]
