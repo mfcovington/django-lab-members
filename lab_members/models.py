@@ -21,9 +21,10 @@ class Position(models.Model):
         return self.title
 
 
-class Scientist(models.Model):
+class ScientistBase(models.Model):
 
     class Meta:
+        abstract = True
         ordering = ['full_name']
         verbose_name = "Scientist"
         verbose_name_plural = "Scientists"
@@ -66,6 +67,18 @@ class Scientist(models.Model):
         help_text=u"If former lab member, please enter the scientist's new URL"
     )
 
+    photo = FilerImageField(
+        null=True,
+        blank=True,
+        help_text=u'Please upload an photo of this scientist',
+    )
+
+    def __str__(self):
+        return self.full_name
+
+
+class Scientist(ScientistBase):
+
     personal_interests = models.TextField(u'personal interests',
         blank=True,
         default='',
@@ -77,15 +90,6 @@ class Scientist(models.Model):
         default='',
         help_text=u'Please write a research interests blurb for this scientist'
     )
-
-    photo = FilerImageField(
-        null=True,
-        blank=True,
-        help_text=u'Please upload an photo of this scientist',
-    )
-
-    def __str__(self):
-        return self.full_name
 
 
 class Institution(models.Model):
