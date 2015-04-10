@@ -34,7 +34,7 @@
 </head>
 <body>
 
-  {% if CMS != True %}
+  {% if not CMS %}
     {% include "lab_members/_navbar.html" %}
   {% endif %}
 
