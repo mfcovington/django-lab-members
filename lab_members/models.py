@@ -1,6 +1,10 @@
+from django.conf import settings
 from django.db import models
 from datetime import datetime
 from filer.fields.image import FilerImageField
+
+if 'cms_lab_members' in settings.INSTALLED_APPS:
+    from cms.models.fields import PlaceholderField
 
 class Position(models.Model):
 
@@ -79,17 +83,27 @@ class ScientistBase(models.Model):
 
 class Scientist(ScientistBase):
 
-    personal_interests = models.TextField(u'personal interests',
-        blank=True,
-        default='',
-        help_text=u'Please write a personal interests blurb for this scientist'
-    )
+    if 'cms_lab_members' in settings.INSTALLED_APPS:
+        personal_interests = PlaceholderField(u'personal interests',
+            related_name='personal_interests',
+        )
 
-    research_interests = models.TextField(u'research interests',
-        blank=True,
-        default='',
-        help_text=u'Please write a research interests blurb for this scientist'
-    )
+        research_interests = PlaceholderField(u'research interests',
+            related_name='research_interests',
+        )
+
+    else:
+        personal_interests = models.TextField(u'personal interests',
+            blank=True,
+            default='',
+            help_text=u'Please write a personal interests blurb for this scientist'
+        )
+
+        research_interests = models.TextField(u'research interests',
+            blank=True,
+            default='',
+            help_text=u'Please write a research interests blurb for this scientist'
+        )
 
 
 class Institution(models.Model):
