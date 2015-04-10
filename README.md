@@ -32,6 +32,7 @@ Lab Members is a Django app to display lab personnel and information about them.
         ```python
         # For filer's Django 1.7 compatibility
         MIGRATION_MODULES = {
+            ...
             'filer': 'filer.migrations_django',
         }
 
@@ -65,6 +66,8 @@ Lab Members is a Django app to display lab personnel and information about them.
             (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT}))
     ```
+
+- Run `python manage.py makemigrations lab_members` to create the lab_members migrations.
 
 - Run `python manage.py migrate` to create the lab_members models.
 
