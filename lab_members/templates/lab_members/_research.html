@@ -1,4 +1,20 @@
-{% if scientist.research_interests %}
+{% if CMS == True %}
+  {% load cms_tags %}
+
+  {% render_placeholder scientist.research_interests as placeholder_content %}
+
+  {% if placeholder_content %}
+    <div class="container-fluid">
+    <h4>Research Interests</h4>
+  {% endif %}
+
+    {% render_placeholder scientist.research_interests %}
+
+  {% if placeholder_content %}
+    </div>
+  {% endif %}
+
+{% elif scientist.research_interests %}
   <div class="container-fluid">
     <h4>Research Interests</h4>
     {{ scientist.research_interests|linebreaks }}
