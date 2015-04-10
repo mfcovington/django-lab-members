@@ -1,5 +1,9 @@
-{% extends "lab_members/base.html" %}
+{% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
 {% load thumbnail %}
+
+{% if CMS %}
+  {% load cms_tags %}
+{% endif %}
 
 {% block content %}
 
@@ -15,7 +19,7 @@
           <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
         {% endif %}
 
-        <h2>{{ scientist.full_name }}</h2>
+        <h2>{% render_model scientist "full_name" %}</h2>
 
         {% if scientist.title %}
           <h4>{{ scientist.title }}</h4>

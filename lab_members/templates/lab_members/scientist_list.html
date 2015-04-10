@@ -1,4 +1,4 @@
-{% extends "lab_members/base.html" %}
+{% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
 
 {% block content %}
 
