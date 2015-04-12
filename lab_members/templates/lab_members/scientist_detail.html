@@ -7,38 +7,38 @@
 
 {% block content %}
 
-<div class="container">
+  <div class="container">
 
-  <div class="row">
-    {% include "lab_members/_alumni.html" %}
+    <div class="row">
+      {% include "lab_members/_alumni.html" %}
 
-    <div class="col-sm-12 col-lg-3">
-      <div class="row text-center">
+      <div class="col-sm-12 col-lg-3">
+        <div class="row text-center">
 
-        {% if scientist.photo %}
-          <img src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
-        {% else %}
-          <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
-        {% endif %}
+          {% if scientist.photo %}
+            <img src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
+          {% else %}
+            <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
+          {% endif %}
 
-        <h2>{% render_model scientist "full_name" %}</h2>
+          <h2>{% render_model scientist "full_name" %}</h2>
 
-        {% if scientist.title %}
-          <h4>{{ scientist.title }}</h4>
-        {% endif %}
+          {% if scientist.title %}
+            <h4>{{ scientist.title }}</h4>
+          {% endif %}
 
-        <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+          <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-lg-9">
+        {% include "lab_members/_personal.html" %}
+        {% include "lab_members/_research.html" %}
+        {% include "lab_members/_education.html" %}
+        {% include "lab_members/_employment.html" %}
       </div>
     </div>
 
-    <div class="col-sm-12 col-lg-9">
-      {% include "lab_members/_personal.html" %}
-      {% include "lab_members/_research.html" %}
-      {% include "lab_members/_education.html" %}
-      {% include "lab_members/_employment.html" %}
-    </div>
   </div>
-
-</div>
 
 {% endblock content %}
