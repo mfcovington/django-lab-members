@@ -1,3 +1,10 @@
+.thumbnail {
+  max-width: 310px;
+}
+.thumbnail {
+  margin-left: auto;
+  margin-right: auto;
+}
 .thumbnail a:hover {
   text-decoration: none;
 }
