@@ -5,6 +5,10 @@
   {% load cms_tags %}
 {% endif %}
 
+{% block title %}
+  {{ scientist.full_name }}{% if LAB_NAME %} | {{ LAB_NAME }}{% endif %}
+{% endblock title %}
+
 {% block content %}
 
   <div class="container">
