@@ -49,7 +49,7 @@ Lab Members is a Django app to display lab personnel and information about them.
         THUMBNAIL_SUBDIR = 'versions'
         ```
 
-- Include URL configurations for `lab_members` and media (if `DEBUG == True`) to your project's `urls.py` file:
+- Include URL configurations for `lab_members` and media (if `DEBUG == True`) in your project's `urls.py` file:
 
     ```python
     ...
