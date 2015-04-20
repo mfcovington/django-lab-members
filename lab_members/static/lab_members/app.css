@@ -1,0 +1,16 @@
+.gallery-heading {
+  margin-bottom: 25px;
+}
+.thumbnail {
+  max-width: 310px;
+}
+.thumbnail {
+  margin-left: auto;
+  margin-right: auto;
+}
+.thumbnail a:hover {
+  text-decoration: none;
+}
+.thumbnail:hover {
+  border-color: black;
+}
