@@ -58,3 +58,8 @@ db.sqlite3*
 
 # Media files, uploads, etc.
 media/
+
+# django project
+/manage.py
+/mysite/
+
