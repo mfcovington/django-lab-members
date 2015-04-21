@@ -1,3 +1,7 @@
+/***********************/
+/* Scientist List View */
+/***********************/
+
 .gallery-heading {
   margin-bottom: 25px;
 }
@@ -13,4 +17,13 @@
 }
 .thumbnail:hover {
   border-color: black;
+}
+
+
+/*************************/
+/* Scientist Detail View */
+/*************************/
+
+.scientist-photo {
+  max-width: 100%;
 }

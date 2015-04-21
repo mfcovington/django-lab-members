@@ -1,5 +1,9 @@
 {% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
-{% load thumbnail %}
+{% load sekizai_tags staticfiles thumbnail %}
+
+{% addtoblock "css" strip %}
+  <link rel="stylesheet" type="text/css" href="{% static 'lab_members/app.css' %}">
+{% endaddtoblock %}
 
 {% if CMS %}
   {% load cms_tags %}
@@ -20,9 +24,9 @@
         <div class="row text-center">
 
           {% if scientist.photo %}
-            <img src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
           {% else %}
-            <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
           {% endif %}
 
           <h2>{% render_model scientist "full_name" %}</h2>
