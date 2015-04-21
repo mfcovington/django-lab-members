@@ -92,6 +92,10 @@ class Scientist(ScientistBase):
             related_name='research_interests',
         )
 
+        sidebar = PlaceholderField(u'scientist sidebar',
+            related_name='scientist sidebar'
+        )
+
     else:
         personal_interests = models.TextField(u'personal interests',
             blank=True,
