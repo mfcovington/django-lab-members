@@ -1,11 +1,11 @@
 {% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
 {% load sekizai_tags staticfiles %}
 
-{% addtoblock "css" strip %}
-  <link rel="stylesheet" type="text/css" href="{% static 'lab_members/app.css' %}">
-{% endaddtoblock %}
-
 {% block content %}
+
+  {% addtoblock "css" strip %}
+    <link rel="stylesheet" type="text/css" href="{% static 'lab_members/app.css' %}">
+  {% endaddtoblock %}
 
   <div class="container">
 
