@@ -25,7 +25,7 @@ setup(
     license='BSD License',
     description='A Django app to display lab personnel and information about them.',
     long_description=README,
-    # url='http://www.example.com/',
+    url='https://github.com/mfcovington/django-lab-members',
     author='Michael F. Covington',
     author_email='mfcovington@gmail.com',
     classifiers=[
