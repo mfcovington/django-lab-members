@@ -19,13 +19,13 @@ install_requires = [
 
 setup(
     name='django-lab-members',
-    version='0.2.1',
+    version='0.2.2',
     packages=['lab_members'],
     include_package_data=True,
     license='BSD License',
     description='A Django app to display lab personnel and information about them.',
     long_description=README,
-    # url='http://www.example.com/',
+    url='https://github.com/mfcovington/django-lab-members',
     author='Michael F. Covington',
     author_email='mfcovington@gmail.com',
     classifiers=[
