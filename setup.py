@@ -19,7 +19,7 @@ install_requires = [
 
 setup(
     name='django-lab-members',
-    version='0.2.1',
+    version='0.2.2',
     packages=['lab_members'],
     include_package_data=True,
     license='BSD License',
