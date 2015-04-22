@@ -1,0 +1,18 @@
+Revision history for Django app django-lab-members
+
+0.2.2 2015-04-21
+
+  - Add Scientist sidebar placeholder if CMS for medium+ screens
+  - Improve styling
+
+0.2.1 2015-04-19
+
+  - Improve styling
+
+0.2.0 2015-04-10
+
+  - Allow integration with django CMS using djangocms-lab-members
+
+0.1.0 2015-04-08
+
+  - A Django app to display lab personnel and information about them

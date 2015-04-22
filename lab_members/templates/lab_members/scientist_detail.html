@@ -1,5 +1,5 @@
 {% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
-{% load thumbnail %}
+{% load sekizai_tags staticfiles thumbnail %}
 
 {% if CMS %}
   {% load cms_tags %}
@@ -11,18 +11,22 @@
 
 {% block content %}
 
+  {% addtoblock "css" strip %}
+    <link rel="stylesheet" type="text/css" href="{% static 'lab_members/app.css' %}">
+  {% endaddtoblock %}
+
   <div class="container">
 
     <div class="row">
       {% include "lab_members/_alumni.html" %}
 
-      <div class="col-sm-12 col-lg-3">
-        <div class="row text-center">
+      <div class="col-sm-12 col-md-3">
 
+        <div class="row text-center">
           {% if scientist.photo %}
-            <img src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
           {% else %}
-            <img src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
           {% endif %}
 
           <h2>{% render_model scientist "full_name" %}</h2>
@@ -33,9 +37,16 @@
 
           <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
         </div>
+
+        {% if CMS %}
+          <div class="container-fluid hidden-xs hidden-sm">
+            {% render_placeholder scientist.sidebar %}
+          </div>
+        {% endif %}
+
       </div>
 
-      <div class="col-sm-12 col-lg-9">
+      <div class="col-sm-12 col-md-9">
         {% include "lab_members/_personal.html" %}
         {% include "lab_members/_research.html" %}
         {% include "lab_members/_education.html" %}

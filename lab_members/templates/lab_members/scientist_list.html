@@ -1,6 +1,11 @@
 {% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
+{% load sekizai_tags staticfiles %}
 
 {% block content %}
+
+  {% addtoblock "css" strip %}
+    <link rel="stylesheet" type="text/css" href="{% static 'lab_members/app.css' %}">
+  {% endaddtoblock %}
 
   <div class="container">
 
@@ -18,7 +23,7 @@
     <hr>
 
     {% if alumni_list %}
-      <h1 class="text-center">Lab Alumni</h1>
+      <h1 class="text-center gallery-heading">Lab Alumni</h1>
       <div class="container-fluid">
         <div id="lab-members" class="row">
           {% for scientist in alumni_list %}
