@@ -1,9 +1,6 @@
 {% extends CMS|yesno:"base.html,lab_members/base.html,lab_members/base.html" %}
-{% load sekizai_tags staticfiles thumbnail %}
-
-{% if CMS %}
-  {% load cms_tags %}
-{% endif %}
+{% load friendly_loader sekizai_tags staticfiles thumbnail %}
+{% friendly_load cms_tags %}
 
 {% block title %}
   {{ scientist.full_name }}{% if LAB_NAME %} | {{ LAB_NAME }}{% endif %}
@@ -29,7 +26,13 @@
             <img class="scientist-photo" src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
           {% endif %}
 
-          <h2>{% render_model scientist "full_name" %}</h2>
+          <h2>
+            {% if_has_tag render_model %}
+              {% render_model scientist "full_name" %}
+            {% else %}
+              {{ scientist.full_name }}
+            {% endif_has_tag %}
+          </h2>
 
           {% if scientist.title %}
             <h4>{{ scientist.title }}</h4>
@@ -38,11 +41,11 @@
           <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
         </div>
 
-        {% if CMS %}
-          <div class="container-fluid hidden-xs hidden-sm">
+        <div class="container-fluid hidden-xs hidden-sm">
+          {% if_has_tag render_placeholder %}
             {% render_placeholder scientist.sidebar %}
-          </div>
-        {% endif %}
+          {% endif_has_tag %}
+        </div>
 
       </div>
 

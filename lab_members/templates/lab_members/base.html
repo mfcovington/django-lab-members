@@ -37,9 +37,7 @@
 </head>
 <body>
 
-  {% if not CMS %}
-    {% include "lab_members/_navbar.html" %}
-  {% endif %}
+  {% include "lab_members/_navbar.html" %}
 
   <div id="base-content-block">
     {% block content %}{% endblock content %}

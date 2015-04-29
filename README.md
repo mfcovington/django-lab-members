@@ -18,6 +18,7 @@ Lab Members is a Django app to display lab personnel and information about them.
             'filer',
             'mptt',
             'sekizai',
+            'friendlytagloader',
         )
         ```
 
