@@ -1,5 +1,11 @@
 Revision history for Django app django-lab-members
 
+0.2.3 2015-04-29
+
+  - Make profile thumbnails equal heights (within row) to account for long names
+  - Use 'django-friendly-tag-loader' to load and use django CMS tags if they are available
+  - Use 2x resolution photos (for retina, etc. displays)
+
 0.2.2 2015-04-21
 
   - Add Scientist sidebar placeholder if CMS for medium+ screens
