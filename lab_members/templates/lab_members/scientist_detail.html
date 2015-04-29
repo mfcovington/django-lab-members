@@ -21,9 +21,9 @@
 
         <div class="row text-center">
           {% if scientist.photo %}
-            <img class="scientist-photo" src="{% thumbnail scientist.photo 300x300 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="{% thumbnail scientist.photo 600x600 crop upscale subject_location=scientist.photo.subject_location %}" alt={{ scientist.full_name }}>
           {% else %}
-            <img class="scientist-photo" src="http://placehold.it/300x300" alt={{ scientist.full_name }}>
+            <img class="scientist-photo" src="http://placehold.it/600x600" alt={{ scientist.full_name }}>
           {% endif %}
 
           <h2>
