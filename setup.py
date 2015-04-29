@@ -14,6 +14,7 @@ install_requires = [
     "django-filer==0.9.9",
     "django-mptt==0.6.1",
     "django-polymorphic==0.6.1",
+    "django-sekizai==0.8.1",
     "easy-thumbnails==2.2",
 ]
 
