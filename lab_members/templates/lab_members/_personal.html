@@ -1,5 +1,7 @@
-{% if CMS %}
-  {% load cms_tags %}
+{% load friendly_loader %}
+{% friendly_load cms_tags %}
+
+{% if_has_tag render_placeholder %}
 
   {% render_placeholder scientist.personal_interests as placeholder_content %}
 
@@ -14,9 +16,11 @@
     </div>
   {% endif %}
 
-{% elif scientist.personal_interests %}
-  <div class="container-fluid">
-    <h4>Personal Interests</h4>
-    {{ scientist.personal_interests|linebreaks }}
-  </div>
-{% endif %}
+{% else %}
+  {% if scientist.personal_interests %}
+    <div class="container-fluid">
+      <h4>Personal Interests</h4>
+      {{ scientist.personal_interests|linebreaks }}
+    </div>
+  {% endif %}
+{% endif_has_tag %}

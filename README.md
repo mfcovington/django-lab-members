@@ -17,6 +17,8 @@ Lab Members is a Django app to display lab personnel and information about them.
             'easy_thumbnails',
             'filer',
             'mptt',
+            'sekizai',
+            'friendlytagloader',
         )
         ```
 
@@ -49,6 +51,14 @@ Lab Members is a Django app to display lab personnel and information about them.
         THUMBNAIL_SUBDIR = 'versions'
         ```
 
+    - Add `sekizai` settings:
+
+        ```python
+        from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+        TEMPLATE_CONTEXT_PROCESSORS += ('sekizai.context_processors.sekizai',)
+        )
+        ```
+
 - Include URL configurations for `lab_members` and media (if `DEBUG == True`) in your project's `urls.py` file:
 
     ```python
@@ -76,4 +86,4 @@ Lab Members is a Django app to display lab personnel and information about them.
 
 - Visit http://127.0.0.1:8000/lab_members/ to view a list of lab members.
 
-*Version 0.2.2*
+*Version 0.2.3*

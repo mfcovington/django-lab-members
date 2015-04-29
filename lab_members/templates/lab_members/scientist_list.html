@@ -35,4 +35,9 @@
 
   </div>
 
+  {% addtoblock "js" strip %}
+    <script src="{% static 'lab_members/jquery.matchHeight-min.js' %}"></script>
+    <script src="{% static 'lab_members/app.js' %}"></script>
+  {% endaddtoblock %}
+
 {% endblock content %}

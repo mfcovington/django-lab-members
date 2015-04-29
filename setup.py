@@ -12,14 +12,16 @@ install_requires = [
     "Pillow==2.8.1",
     "Unidecode==0.04.17",
     "django-filer==0.9.9",
+    "django-friendly-tag-loader==1.2",
     "django-mptt==0.6.1",
     "django-polymorphic==0.6.1",
+    "django-sekizai==0.8.1",
     "easy-thumbnails==2.2",
 ]
 
 setup(
     name='django-lab-members',
-    version='0.2.2',
+    version='0.2.3',
     packages=['lab_members'],
     include_package_data=True,
     license='BSD License',
