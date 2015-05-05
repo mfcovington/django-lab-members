@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from datetime import datetime
 from filer.fields.image import FilerImageField
@@ -215,6 +216,10 @@ class Records(models.Model):
         blank=True,
         help_text=u"Please specify advisor's name",
     )
+
+    def clean(self):
+        if self.year_start and self.year_end and self.year_start > self.year_end:
+            raise ValidationError("'Year Started' cannot come after 'Year Ended'.")
 
 
 class Education(Records):
