@@ -6,6 +6,12 @@ from filer.fields.image import FilerImageField
 if 'cms_lab_members' in settings.INSTALLED_APPS:
     from cms.models.fields import PlaceholderField
 
+def tuplify(x): return (x,x)
+current_year = datetime.now().year
+YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
+YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
+
+
 class Position(models.Model):
 
     class Meta:
@@ -189,21 +195,14 @@ class Advisor(models.Model):
         return self.full_name
 
 
-class Education(models.Model):
+class Records(models.Model):
 
     class Meta:
+        abstract = True
         ordering = ['-year_start', '-year_end']
-        verbose_name = "Education record"
-        verbose_name_plural = "Education records"
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
-    )
-
-    degree = models.ForeignKey(u'lab_members.Degree',
-        null=True,
-        blank=True,
-        help_text=u'Please specify the degree granted',
     )
 
     field = models.ForeignKey(u'lab_members.Field',
@@ -220,10 +219,18 @@ class Education(models.Model):
         help_text=u"Please specify advisor's name",
     )
 
-    def tuplify(x): return (x,x)
-    current_year = datetime.now().year
-    YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
-    YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
+
+class Education(Records):
+
+    class Meta:
+        verbose_name = "Education record"
+        verbose_name_plural = "Education records"
+
+    degree = models.ForeignKey(u'lab_members.Degree',
+        null=True,
+        blank=True,
+        help_text=u'Please specify the degree granted',
+    )
 
     year_start = models.IntegerField(u'year started',
         null=True,
@@ -254,39 +261,15 @@ class Education(models.Model):
         return years
 
 
-class Employment(models.Model):
+class Employment(Records):
 
     class Meta:
-        ordering = ['-year_start', '-year_end']
         verbose_name = "Employment record"
         verbose_name_plural = "Employment records"
-
-    institution = models.ForeignKey('lab_members.Institution',
-        help_text=u'Please enter the institution attended',
-    )
 
     position = models.ForeignKey('lab_members.Position',
         help_text=u'Please enter a title for this position',
     )
-
-    field = models.ForeignKey(u'lab_members.Field',
-        null=True,
-        blank=True,
-        help_text=u'Please specify the field studied',
-    )
-
-    scientist = models.ForeignKey('lab_members.Scientist')
-
-    advisor = models.ForeignKey('lab_members.Advisor',
-        null=True,
-        blank=True,
-        help_text=u"Please specify advisor's name",
-    )
-
-    def tuplify(x): return (x,x)
-    current_year = datetime.now().year
-    YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
-    YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
 
     year_start = models.IntegerField(u'year started',
         null=True,
