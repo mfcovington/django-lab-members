@@ -26,6 +26,7 @@ class ScientistAdmin(admin.ModelAdmin):
             'photo',
             'current',
             'alumni_redirect_url',
+            'visible',
         ]
     })
 
@@ -49,8 +50,8 @@ class ScientistAdmin(admin.ModelAdmin):
 
     inlines = [EducationInline, EmploymentInline]
 
-    list_display = ['full_name', 'title', 'email', 'current']
-    list_filter = ['title', 'current']
+    list_display = ['full_name', 'title', 'email', 'current', 'visible']
+    list_filter = ['title', 'current', 'visible']
     search_fields = ['full_name']
 
     prepopulated_fields = {"slug": ("full_name",)}

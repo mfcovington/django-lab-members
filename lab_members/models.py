@@ -77,6 +77,11 @@ class ScientistBase(models.Model):
         help_text=u'Please upload an photo of this scientist',
     )
 
+    visible = models.BooleanField('visible',
+        default=True,
+        help_text='Display this scientist?',
+    )
+
     def __str__(self):
         return self.full_name
 
