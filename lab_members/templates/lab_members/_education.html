@@ -23,7 +23,7 @@
                   <td>{{ education }}</td>
                   <td>
                     {% if education.advisor.url %}
-                      <a href="{{ education.advisor.url }}">{{ education.advisor }}</a>
+                      <a href="{{ education.advisor.url }}" target="_blank">{{ education.advisor }}</a>
                     {% else %}
                       {{ education.advisor|default:"" }}
                     {% endif %}
