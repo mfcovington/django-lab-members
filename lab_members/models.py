@@ -193,8 +193,8 @@ class Education(models.Model):
 
     class Meta:
         ordering = ['-year_start', '-year_end']
-        verbose_name = "Educational record"
-        verbose_name_plural = "Educational records"
+        verbose_name = "Education record"
+        verbose_name_plural = "Education records"
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
@@ -258,8 +258,8 @@ class Employment(models.Model):
 
     class Meta:
         ordering = ['-year_start', '-year_end']
-        verbose_name = "Employmental record"
-        verbose_name_plural = "Employmental records"
+        verbose_name = "Employment record"
+        verbose_name_plural = "Employment records"
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
