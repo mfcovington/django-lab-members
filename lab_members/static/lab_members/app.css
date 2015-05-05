@@ -29,6 +29,21 @@
 /* Scientist Detail View */
 /*************************/
 
+/* Make alumni link more prominent */
+.alumni-link {
+  color: #EDF9FE;
+  background-color: #31708f;
+  border: 1px solid #31708f;
+  border-radius: 4px;
+  padding:0 3px 1px;
+
+}
+.alumni-link:hover {
+  color: #31708f;
+  background-color: #EDF9FE;
+  text-decoration: none;
+}
+
 .scientist-photo {
   max-width: 100%;
   width: 300px;
