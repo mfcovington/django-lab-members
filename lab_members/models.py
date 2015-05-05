@@ -6,10 +6,7 @@ from filer.fields.image import FilerImageField
 if 'cms_lab_members' in settings.INSTALLED_APPS:
     from cms.models.fields import PlaceholderField
 
-def tuplify(x): return (x,x)
-current_year = datetime.now().year
-YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
-YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
+YEARS = tuple((yr, yr) for yr in reversed(range(1960, datetime.now().year + 1)))
 
 
 class Position(models.Model):
@@ -235,7 +232,7 @@ class Education(Records):
     year_start = models.IntegerField(u'year started',
         null=True,
         blank=True,
-        choices=YEARS_A,
+        choices=YEARS,
         help_text=u'Please specify the year started',
         max_length=4,
     )
@@ -243,7 +240,7 @@ class Education(Records):
     year_end = models.IntegerField(u'year degree granted (or study ended)',
         null=True,
         blank=True,
-        choices=YEARS_B,
+        choices=YEARS,
         help_text=u'Please specify the year finished',
         max_length=4,
     )
@@ -273,7 +270,7 @@ class Employment(Records):
 
     year_start = models.IntegerField(u'year started',
         null=True,
-        choices=YEARS_A,
+        choices=YEARS,
         help_text=u'Please specify the year started',
         max_length=4,
     )
@@ -281,7 +278,7 @@ class Employment(Records):
     year_end = models.IntegerField(u'year ended',
         null=True,
         blank=True,
-        choices=YEARS_B,
+        choices=YEARS,
         help_text=u'Please specify the year finished',
         max_length=4,
     )
