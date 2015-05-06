@@ -30,6 +30,13 @@ class ScientistAdmin(admin.ModelAdmin):
         ]
     })
 
+    fieldset_website = ('Website', {
+        'fields': [
+            'website_url',
+            'website_name',
+        ],
+    })
+
     fieldset_bio = ('Bio', {
         'fields': [
             'personal_interests',
@@ -44,6 +51,7 @@ class ScientistAdmin(admin.ModelAdmin):
 
     fieldsets = [
         fieldset_basic,
+        fieldset_website,
         fieldset_bio,
         fieldset_advanced,
     ]

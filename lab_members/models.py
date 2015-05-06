@@ -64,6 +64,18 @@ class ScientistBase(models.Model):
         help_text=u'Please enter email address',
     )
 
+    website_url = models.URLField('website URL',
+        blank=True,
+        help_text='If this scientist has a separate website, enter the URL.',
+    )
+
+    website_name = models.CharField('website name',
+        blank=True,
+        help_text='Enter a name to display for the website. ' \
+                  'Default is the URL of the site.',
+        max_length=25,
+    )
+
     current = models.BooleanField(u'current lab member',
         default=True,
         help_text=u'Please specify whether scientist is a current lab member',
