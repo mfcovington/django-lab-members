@@ -1,0 +1,8 @@
+{% load friendly_loader %}
+{% friendly_load cms_tags %}
+
+<div class="container-fluid hidden-xs hidden-sm">
+  {% if_has_tag render_placeholder %}
+    {% render_placeholder scientist.sidebar %}
+  {% endif_has_tag %}
+</div>

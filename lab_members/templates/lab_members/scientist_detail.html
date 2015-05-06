@@ -55,11 +55,7 @@
           </div>
         </div>
 
-        <div class="container-fluid hidden-xs hidden-sm">
-          {% if_has_tag render_placeholder %}
-            {% render_placeholder scientist.sidebar %}
-          {% endif_has_tag %}
-        </div>
+        {% include "lab_members/_sidebar.html" %}
 
       </div>
 
