@@ -38,14 +38,24 @@
             <h4>{{ scientist.title }}</h4>
           {% endif %}
 
-          <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+          <div class="scientist-contact-info">
+            <p><a href="mailto:{{ scientist.email }}">{{ scientist.email }}</a></p>
+
+            {% if scientist.website_url %}
+              <p>
+                <a href="mailto:{{ scientist.email }}">
+                  {% if scientist.website_name %}
+                    {{ scientist.website_name }}
+                  {% else %}
+                    {{ scientist.website_url }}
+                  {% endif %}
+                </a>
+              </p>
+            {% endif %}
+          </div>
         </div>
 
-        <div class="container-fluid hidden-xs hidden-sm">
-          {% if_has_tag render_placeholder %}
-            {% render_placeholder scientist.sidebar %}
-          {% endif_has_tag %}
-        </div>
+        {% include "lab_members/_sidebar.html" %}
 
       </div>
 

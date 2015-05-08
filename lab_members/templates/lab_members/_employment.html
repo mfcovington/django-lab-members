@@ -23,7 +23,7 @@
                   <td>{{ employment }}</td>
                   <td>
                     {% if employment.advisor.url %}
-                      <a href="{{ employment.advisor.url }}">{{ employment.advisor }}</a>
+                      <a href="{{ employment.advisor.url }}" target="_blank">{{ employment.advisor }}</a>
                     {% else %}
                       {{ employment.advisor|default:"" }}
                     {% endif %}

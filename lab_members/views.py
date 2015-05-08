@@ -8,8 +8,8 @@ class ScientistListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ScientistListView, self).get_context_data(**kwargs)
-        context['current_list'] = Scientist.objects.filter(current=True)
-        context['alumni_list'] = Scientist.objects.filter(current=False)
+        context['current_list'] = Scientist.objects.filter(current=True, visible=True)
+        context['alumni_list'] = Scientist.objects.filter(current=False, visible=True)
         context['request'] = self.request
         return context
 
@@ -60,7 +60,7 @@ class ScientistListView(ListView):
 
 
 class ScientistDetailView(DetailView):
-    model = Scientist
+    queryset = Scientist.objects.filter(visible=True)
 
     def get_context_data(self, **kwargs):
         context = super(ScientistDetailView, self).get_context_data(**kwargs)

@@ -26,7 +26,15 @@ class ScientistAdmin(admin.ModelAdmin):
             'photo',
             'current',
             'alumni_redirect_url',
+            'visible',
         ]
+    })
+
+    fieldset_website = ('Website', {
+        'fields': [
+            'website_url',
+            'website_name',
+        ],
     })
 
     fieldset_bio = ('Bio', {
@@ -43,14 +51,15 @@ class ScientistAdmin(admin.ModelAdmin):
 
     fieldsets = [
         fieldset_basic,
+        fieldset_website,
         fieldset_bio,
         fieldset_advanced,
     ]
 
     inlines = [EducationInline, EmploymentInline]
 
-    list_display = ['full_name', 'title', 'email', 'current']
-    list_filter = ['title', 'current']
+    list_display = ['full_name', 'title', 'email', 'current', 'visible']
+    list_filter = ['title', 'current', 'visible']
     search_fields = ['full_name']
 
     prepopulated_fields = {"slug": ("full_name",)}

@@ -1,10 +1,14 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from datetime import datetime
 from filer.fields.image import FilerImageField
 
 if 'cms_lab_members' in settings.INSTALLED_APPS:
     from cms.models.fields import PlaceholderField
+
+YEARS = tuple((yr, yr) for yr in reversed(range(1960, datetime.now().year + 1)))
+
 
 class Position(models.Model):
 
@@ -60,6 +64,18 @@ class ScientistBase(models.Model):
         help_text=u'Please enter email address',
     )
 
+    website_url = models.URLField('website URL',
+        blank=True,
+        help_text='If this scientist has a separate website, enter the URL.',
+    )
+
+    website_name = models.CharField('website name',
+        blank=True,
+        help_text='Enter a name to display for the website. ' \
+                  'Default is the URL of the site.',
+        max_length=25,
+    )
+
     current = models.BooleanField(u'current lab member',
         default=True,
         help_text=u'Please specify whether scientist is a current lab member',
@@ -75,6 +91,11 @@ class ScientistBase(models.Model):
         null=True,
         blank=True,
         help_text=u'Please upload an photo of this scientist',
+    )
+
+    visible = models.BooleanField('visible',
+        default=True,
+        help_text='Display this scientist?',
     )
 
     def __str__(self):
@@ -184,21 +205,14 @@ class Advisor(models.Model):
         return self.full_name
 
 
-class Education(models.Model):
+class Records(models.Model):
 
     class Meta:
+        abstract = True
         ordering = ['-year_start', '-year_end']
-        verbose_name = "Educational record"
-        verbose_name_plural = "Educational records"
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
-    )
-
-    degree = models.ForeignKey(u'lab_members.Degree',
-        null=True,
-        blank=True,
-        help_text=u'Please specify the degree granted',
     )
 
     field = models.ForeignKey(u'lab_members.Field',
@@ -215,15 +229,27 @@ class Education(models.Model):
         help_text=u"Please specify advisor's name",
     )
 
-    def tuplify(x): return (x,x)
-    current_year = datetime.now().year
-    YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
-    YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
+    def clean(self):
+        if self.year_start and self.year_end and self.year_start > self.year_end:
+            raise ValidationError("'Year Started' cannot come after 'Year Ended'.")
+
+
+class Education(Records):
+
+    class Meta:
+        verbose_name = "Education record"
+        verbose_name_plural = "Education records"
+
+    degree = models.ForeignKey(u'lab_members.Degree',
+        null=True,
+        blank=True,
+        help_text=u'Please specify the degree granted',
+    )
 
     year_start = models.IntegerField(u'year started',
         null=True,
         blank=True,
-        choices=YEARS_A,
+        choices=YEARS,
         help_text=u'Please specify the year started',
         max_length=4,
     )
@@ -231,7 +257,7 @@ class Education(models.Model):
     year_end = models.IntegerField(u'year degree granted (or study ended)',
         null=True,
         blank=True,
-        choices=YEARS_B,
+        choices=YEARS,
         help_text=u'Please specify the year finished',
         max_length=4,
     )
@@ -249,43 +275,19 @@ class Education(models.Model):
         return years
 
 
-class Employment(models.Model):
+class Employment(Records):
 
     class Meta:
-        ordering = ['-year_start', '-year_end']
-        verbose_name = "Employmental record"
-        verbose_name_plural = "Employmental records"
-
-    institution = models.ForeignKey('lab_members.Institution',
-        help_text=u'Please enter the institution attended',
-    )
+        verbose_name = "Employment record"
+        verbose_name_plural = "Employment records"
 
     position = models.ForeignKey('lab_members.Position',
         help_text=u'Please enter a title for this position',
     )
 
-    field = models.ForeignKey(u'lab_members.Field',
-        null=True,
-        blank=True,
-        help_text=u'Please specify the field studied',
-    )
-
-    scientist = models.ForeignKey('lab_members.Scientist')
-
-    advisor = models.ForeignKey('lab_members.Advisor',
-        null=True,
-        blank=True,
-        help_text=u"Please specify advisor's name",
-    )
-
-    def tuplify(x): return (x,x)
-    current_year = datetime.now().year
-    YEARS_A = map(tuplify, reversed(range(1960, current_year + 1)))
-    YEARS_B = map(tuplify, reversed(range(1960, current_year + 1)))
-
     year_start = models.IntegerField(u'year started',
         null=True,
-        choices=YEARS_A,
+        choices=YEARS,
         help_text=u'Please specify the year started',
         max_length=4,
     )
@@ -293,7 +295,7 @@ class Employment(models.Model):
     year_end = models.IntegerField(u'year ended',
         null=True,
         blank=True,
-        choices=YEARS_B,
+        choices=YEARS,
         help_text=u'Please specify the year finished',
         max_length=4,
     )

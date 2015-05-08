@@ -18,12 +18,37 @@
 .thumbnail:hover {
   border-color: black;
 }
+/* Adjust the y-position when following link to Lab Alumni anchor */
+#lab-alumni {
+  padding-top: 135px;
+  margin-top: -135px;
+}
 
 
 /*************************/
 /* Scientist Detail View */
 /*************************/
 
+/* Make alumni link more prominent */
+.alumni-link {
+  color: #EDF9FE;
+  background-color: #31708f;
+  border: 1px solid #31708f;
+  border-radius: 4px;
+  padding:0 3px 1px;
+
+}
+.alumni-link:hover {
+  color: #31708f;
+  background-color: #EDF9FE;
+  text-decoration: none;
+}
+
+.scientist-contact-info p + p {
+  margin-top: -8px;
+}
+
 .scientist-photo {
   max-width: 100%;
+  width: 300px;
 }
