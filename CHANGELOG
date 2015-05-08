@@ -1,5 +1,17 @@
 Revision history for Django app django-lab-members
 
+0.2.4 2015-05-08
+
+  - Display Scientist only if visible == True
+  - Prevent higher resolution photos from being wider than 300px
+  - Fix linking to Lab Alumni subsection
+  - Validate that Employment/Education 'Year Started' <= 'Year Ended'
+  - Open advisor's link in a new window
+  - Make alumni link more prominent
+  - Add website field for Scientist & display below email address
+  - Move sidebar to modal for smaller screens
+  - Minor behind-the-scenes improvements
+
 0.2.3 2015-04-29
 
   - Make profile thumbnails equal heights (within row) to account for long names
