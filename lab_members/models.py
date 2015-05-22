@@ -113,6 +113,10 @@ class Scientist(ScientistBase):
             related_name='research_interests',
         )
 
+        publications = PlaceholderField(u'publications',
+            related_name='publications',
+        )
+
         sidebar = PlaceholderField(u'scientist sidebar',
             related_name='scientist sidebar'
         )
