@@ -1,5 +1,11 @@
 Revision history for Django app django-lab-members
 
+0.2.5 2015-05-22
+
+  - Add Scientist publications placeholder
+  - Add Admin models for Education/Employment Records
+  - Fix ordering of Education/Employment Records
+
 0.2.4 2015-05-08
 
   - Display Scientist only if visible == True
