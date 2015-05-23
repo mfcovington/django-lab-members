@@ -73,6 +73,58 @@ class InstitutionAdmin(admin.ModelAdmin):
 admin.site.register(Institution, InstitutionAdmin)
 
 
+class RecordAdmin(admin.ModelAdmin):
+    ordering = ['scientist', 'year_start', 'year_end']
+
+    list_display = [
+        'scientist_years',
+        'institution',
+        'field',
+        'advisor',
+    ]
+    list_filter = ['field']
+    search_fields = [
+        'scientist__full_name',
+        'institution__name',
+        'advisor__full_name',
+    ]
+
+    def scientist_years(self, object):
+        return "{} ({})".format(object.scientist, object)
+
+    def add_list_display(self, request, attribute):
+        list_display = super().get_list_display(request)[:]
+        list_display.append(attribute)
+        return list_display
+
+    def add_list_filter(self, request, attribute):
+        list_filter = super().get_list_filter(request)[:]
+        list_filter.append(attribute)
+        return list_filter
+
+
+class EducationAdmin(RecordAdmin):
+
+    def get_list_display(self, request):
+        return self.add_list_display(request, 'degree')
+
+    def get_list_filter(self, request):
+        return self.add_list_filter(request, 'degree')
+
+admin.site.register(Education, EducationAdmin)
+
+
+class EmploymentAdmin(RecordAdmin):
+
+    def get_list_display(self, request):
+        return self.add_list_display(request, 'position')
+
+    def get_list_filter(self, request):
+        return self.add_list_filter(request, 'position')
+
+admin.site.register(Employment, EmploymentAdmin)
+
+
 class DegreeAdmin(admin.ModelAdmin):
     pass
 

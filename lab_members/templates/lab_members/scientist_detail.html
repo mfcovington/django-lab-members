@@ -64,6 +64,11 @@
         {% include "lab_members/_research.html" %}
         {% include "lab_members/_education.html" %}
         {% include "lab_members/_employment.html" %}
+        {% if_has_tag render_placeholder %}
+          <div class="container-fluid">
+            {% render_placeholder scientist.publications %}
+          </div>
+        {% endif_has_tag %}
       </div>
     </div>
 
