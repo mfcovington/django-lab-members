@@ -22,11 +22,9 @@
                   <td>{{ education.institution|default:"" }}</td>
                   <td>{{ education }}</td>
                   <td>
-                    {% if education.advisor.url %}
-                      <a href="{{ education.advisor.url }}" target="_blank">{{ education.advisor }}</a>
-                    {% else %}
-                      {{ education.advisor|default:"" }}
-                    {% endif %}
+                    {% for advisor in education.advisors.all %}
+                      {% include "lab_members/_advisors_loop_item.html" %}
+                    {% endfor %}
                   </td>
                 </tr>
               {% endfor %}

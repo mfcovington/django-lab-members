@@ -80,7 +80,6 @@ class RecordAdmin(admin.ModelAdmin):
         'scientist_years',
         'institution',
         'field',
-        'advisor',
     ]
     list_filter = ['field']
     search_fields = [

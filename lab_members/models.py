@@ -226,10 +226,11 @@ class Records(models.Model):
 
     scientist = models.ForeignKey('lab_members.Scientist')
 
-    advisor = models.ForeignKey('lab_members.Advisor',
-        null=True,
+    advisors = models.ManyToManyField(Advisor,
         blank=True,
-        help_text=u"Please specify advisor's name",
+        null=True,
+        help_text=u"Please select advisor's name (or multiple co-advisors).<br>",
+        related_name='%(app_label)s_%(class)s_co_advisors',
     )
 
     def clean(self):
