@@ -43,7 +43,7 @@
 
             {% if scientist.website_url %}
               <p>
-                <a href="mailto:{{ scientist.email }}">
+                <a href="{{ scientist.website_url }}">
                   {% if scientist.website_name %}
                     {{ scientist.website_name }}
                   {% else %}
