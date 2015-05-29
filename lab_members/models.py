@@ -73,7 +73,7 @@ class ScientistBase(models.Model):
         blank=True,
         help_text='Enter a name to display for the website. ' \
                   'Default is the URL of the site.',
-        max_length=25,
+        max_length=64,
     )
 
     current = models.BooleanField(u'current lab member',
