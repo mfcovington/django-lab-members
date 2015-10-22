@@ -2,6 +2,9 @@
 /* Scientist List View */
 /***********************/
 
+.former-title {
+  color: gray;
+}
 .gallery-heading {
   margin-bottom: 25px;
 }
@@ -42,6 +45,10 @@
   color: #31708f;
   background-color: #EDF9FE;
   text-decoration: none;
+}
+h4.alumni-info + h4.alumni-info {
+  margin-top: -6px;
+  margin-bottom: 12px;
 }
 
 .scientist-contact-info p + p {

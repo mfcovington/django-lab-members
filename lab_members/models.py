@@ -81,6 +81,22 @@ class ScientistBase(models.Model):
         help_text=u'Please specify whether scientist is a current lab member',
     )
 
+    alumni_current_institution = models.ForeignKey('lab_members.Institution',
+        blank=True,
+        default=None,
+        help_text=u"If former lab member, please enter the scientist's new institution",
+        null=True,
+        related_name='alumni_current_institution',
+    )
+
+    alumni_current_title = models.ForeignKey('lab_members.Position',
+        blank=True,
+        default=None,
+        help_text=u"If former lab member, please enter the scientist's new title",
+        null=True,
+        related_name='alumni_current_title',
+    )
+
     alumni_redirect_url = models.URLField(u'alumni redirect URL',
         null=True,
         blank=True,

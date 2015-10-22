@@ -12,7 +12,15 @@
         <h4 class="group inner list-group-item-heading text-center">
           {{ scientist.full_name }}
         </h4>
-        <p class="group inner list-group-item-text text-center">
+
+        {% if not scientist.current %}
+          <p class="group inner list-group-item-text text-center">
+            {% if scientist.alumni_current_title %}{{ scientist.alumni_current_title }}<br>{% endif %}{% if scientist.alumni_current_institution %}{{ scientist.alumni_current_institution }}{% endif %}
+          </p>
+        {% endif %}
+
+        <p class="group inner list-group-item-text text-center {% if not scientist.current %}former-title{% endif %}">
+          {% if scientist.title and not scientist.current %}Former{% endif %}
           {{ scientist.title|default:"&nbsp;" }}
         </p>
       </div>

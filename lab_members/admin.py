@@ -24,9 +24,17 @@ class ScientistAdmin(admin.ModelAdmin):
             'email',
             'title',
             'photo',
-            'current',
-            'alumni_redirect_url',
             'visible',
+            'current',
+        ]
+    })
+
+    fieldset_alumni = ('Alumni Information', {
+        'classes': ['collapse'],
+        'fields': [
+            'alumni_current_institution',
+            'alumni_current_title',
+            'alumni_redirect_url',
         ]
     })
 
@@ -51,6 +59,7 @@ class ScientistAdmin(admin.ModelAdmin):
 
     fieldsets = [
         fieldset_basic,
+        fieldset_alumni,
         fieldset_website,
         fieldset_bio,
         fieldset_advanced,
