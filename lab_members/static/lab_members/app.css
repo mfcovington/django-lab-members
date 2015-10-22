@@ -5,6 +5,10 @@
 .former-title {
   color: gray;
 }
+p + p.former-title {
+  margin-top: 4px;
+}
+
 .gallery-heading {
   margin-bottom: 25px;
 }
