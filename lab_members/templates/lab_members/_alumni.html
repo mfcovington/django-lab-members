@@ -3,6 +3,7 @@
     <p><strong>Former Lab Member</strong></p>
     {% if scientist.alumni_current_title or scientist.alumni_current_institution %}
       <p>Current position:
+        <br class="visible-xs-block">
         {% if scientist.alumni_redirect_url %}
           <a class="alumni-link" href="{{ scientist.alumni_redirect_url }}">
         {% endif %}
