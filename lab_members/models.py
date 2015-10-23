@@ -134,7 +134,7 @@ class Scientist(ScientistBase):
         )
 
         sidebar = PlaceholderField(u'scientist sidebar',
-            related_name='scientist sidebar'
+            related_name='scientist_sidebar',
         )
 
     else:
