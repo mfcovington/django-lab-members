@@ -57,6 +57,7 @@ class ScientistBase(models.Model):
         default=None,
         help_text=u'Please specify a title for this scientist',
         null=True,
+        on_delete=models.PROTECT,
     )
 
     email = models.EmailField(u'email address',
@@ -86,6 +87,7 @@ class ScientistBase(models.Model):
         default=None,
         help_text=u"If former lab member, please enter the scientist's new institution",
         null=True,
+        on_delete=models.PROTECT,
         related_name='alumni_current_institution',
     )
 
@@ -94,6 +96,7 @@ class ScientistBase(models.Model):
         default=None,
         help_text=u"If former lab member, please enter the scientist's new title",
         null=True,
+        on_delete=models.PROTECT,
         related_name='alumni_current_title',
     )
 
@@ -107,6 +110,7 @@ class ScientistBase(models.Model):
         null=True,
         blank=True,
         help_text=u'Please upload an photo of this scientist',
+        on_delete=models.PROTECT,
     )
 
     visible = models.BooleanField('visible',
@@ -232,12 +236,14 @@ class Records(models.Model):
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
+        on_delete=models.PROTECT,
     )
 
     field = models.ForeignKey(u'lab_members.Field',
         null=True,
         blank=True,
         help_text=u'Please specify the field studied',
+        on_delete=models.PROTECT,
     )
 
     scientist = models.ForeignKey('lab_members.Scientist')
@@ -265,6 +271,7 @@ class Education(Records):
         null=True,
         blank=True,
         help_text=u'Please specify the degree granted',
+        on_delete=models.PROTECT,
     )
 
     year_start = models.IntegerField(u'year started',
@@ -305,6 +312,7 @@ class Employment(Records):
 
     position = models.ForeignKey('lab_members.Position',
         help_text=u'Please enter a title for this position',
+        on_delete=models.PROTECT,
     )
 
     year_start = models.IntegerField(u'year started',
