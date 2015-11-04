@@ -63,3 +63,14 @@ h4.alumni-info + h4.alumni-info {
   max-width: 100%;
   width: 300px;
 }
+
+/* Override OS X's hidden scrollbars */
+.table-responsive::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 5px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
