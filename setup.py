@@ -16,7 +16,7 @@ install_requires = [
     "Django==1.7.7",
     "Pillow==2.8.1",
     "Unidecode==0.04.17",
-    "django-filer==0.9.9",
+    "django-filer>=0.9.10",
     "django-friendly-tag-loader==1.2",
     "django-mptt==0.6.1",
     "django-polymorphic==0.6.1",
