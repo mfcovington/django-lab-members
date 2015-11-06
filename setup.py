@@ -13,15 +13,10 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 install_requires = [
-    "Django==1.7.7",
-    "Pillow==2.8.1",
-    "Unidecode==0.04.17",
-    "django-filer>=0.9.10",
-    "django-friendly-tag-loader==1.2",
-    "django-mptt==0.6.1",
-    "django-polymorphic==0.6.1",
-    "django-sekizai==0.8.1",
-    "easy-thumbnails==2.2",
+    'Django>=1.7',
+    'django-filer>=0.9.10',
+    'django-friendly-tag-loader>=1.2',
+    'django-sekizai>=0.8.1',
 ]
 
 setup(
