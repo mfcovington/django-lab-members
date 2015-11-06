@@ -47,29 +47,66 @@ Lab Members is a Django app to display lab personnel and information about them.
 
     - Add `sekizai` settings:
 
-        ```python
-        from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-        TEMPLATE_CONTEXT_PROCESSORS += ('sekizai.context_processors.sekizai',)
-        )
-        ```
+        - For **Django 1.7**, add `sekizai.context_processors.sekizai` to `TEMPLATE_CONTEXT_PROCESSORS`:
+
+            ```python
+            from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+            TEMPLATE_CONTEXT_PROCESSORS += ('sekizai.context_processors.sekizai',)
+            ```
+
+        - For **Django 1.8**, add `sekizai.context_processors.sekizai` to `TEMPLATES`:
+
+            ```python
+            TEMPLATES = [
+                {
+                    ...
+                    'OPTIONS': {
+                        'context_processors': [
+                            ...
+                            'sekizai.context_processors.sekizai',
+                        ],
+                    },
+                },
+            ]
+            ```
 
 - Include URL configurations for `lab_members` and media (if `DEBUG == True`) in your project's `urls.py` file:
 
-    ```python
-    ...
-    from django.conf import settings
+    - For **Django 1.7**:
 
-    urlpatterns = patterns('',
+        ```python
         ...
-        url(r'^lab_members/', include('lab_members.urls', namespace='lab_members')),
-        ...
-    )
+        from django.conf import settings
 
-    if settings.DEBUG:
-        urlpatterns += patterns('',
-            (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT}))
-    ```
+        urlpatterns = patterns('',
+            ...
+            url(r'^lab_members/', include('lab_members.urls', namespace='lab_members')),
+            ...
+        )
+
+        if settings.DEBUG:
+            urlpatterns += patterns('',
+                (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+                'document_root': settings.MEDIA_ROOT}))
+        ```
+        
+    - For **Django 1.8**:
+
+        ```python
+        ...
+        from django.conf import settings
+        from django.conf.urls.static import static
+
+        urlpatterns = patterns('',
+            ...
+            url(r'^lab_members/', include('lab_members.urls', namespace='lab_members')),
+            ...
+        )
+
+        if settings.DEBUG:
+            urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        ```
+
 
 - Run `python manage.py makemigrations lab_members` to create the lab_members migrations.
 
