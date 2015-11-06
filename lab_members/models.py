@@ -279,7 +279,6 @@ class Education(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year started',
-        max_length=4,
     )
 
     year_end = models.IntegerField(u'year degree granted (or study ended)',
@@ -287,7 +286,6 @@ class Education(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year finished',
-        max_length=4,
     )
 
     def __str__(self):
@@ -319,7 +317,6 @@ class Employment(Records):
         null=True,
         choices=YEARS,
         help_text=u'Please specify the year started',
-        max_length=4,
     )
 
     year_end = models.IntegerField(u'year ended',
@@ -327,7 +324,6 @@ class Employment(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year finished',
-        max_length=4,
     )
 
     def __str__(self):
