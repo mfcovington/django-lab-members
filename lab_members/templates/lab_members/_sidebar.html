@@ -2,10 +2,6 @@
 {% friendly_load cms_tags %}
 
 {% if_has_tag render_placeholder %}
-  <div class="container-fluid hidden-xs hidden-sm">
-      {% render_placeholder scientist.sidebar %}
-  </div>
-
   <div class="container-fluid hidden-md hidden-lg">
       <div class="text-center">
         <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#{{ scientist.slug }}-sidebar"><span class="glyphicon glyphicon-info-sign"></span> more info</button>
@@ -48,5 +44,9 @@
       </div>
 
 
+  </div>
+
+  <div class="container-fluid hidden-xs hidden-sm">
+      {% render_placeholder scientist.sidebar %}
   </div>
 {% endif_has_tag %}
