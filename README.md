@@ -2,8 +2,6 @@
 
 Lab Members is a Django app to display lab personnel and information about them.
 
-<!-- Detailed documentation is in the "docs" directory. -->
-
 ## Quick start
 
 - Edit the project's `settings.py` file.
