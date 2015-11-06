@@ -250,7 +250,6 @@ class Records(models.Model):
 
     advisors = models.ManyToManyField(Advisor,
         blank=True,
-        null=True,
         help_text=u"Please select advisor's name (or multiple co-advisors).<br>",
         related_name='%(app_label)s_%(class)s_co_advisors',
     )
