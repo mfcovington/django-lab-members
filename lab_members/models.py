@@ -58,6 +58,7 @@ class ScientistBase(models.Model):
         help_text=u'Please specify a title for this scientist',
         null=True,
         on_delete=models.PROTECT,
+        related_name='current_scientist_set',
     )
 
     email = models.EmailField(u'email address',
@@ -88,7 +89,6 @@ class ScientistBase(models.Model):
         help_text=u"If former lab member, please enter the scientist's new institution",
         null=True,
         on_delete=models.PROTECT,
-        related_name='alumni_current_institution',
     )
 
     alumni_current_title = models.ForeignKey('lab_members.Position',
@@ -97,7 +97,7 @@ class ScientistBase(models.Model):
         help_text=u"If former lab member, please enter the scientist's new title",
         null=True,
         on_delete=models.PROTECT,
-        related_name='alumni_current_title',
+        related_name='alumni_scientist_set',
     )
 
     alumni_redirect_url = models.URLField(u'alumni redirect URL',
@@ -251,7 +251,7 @@ class Records(models.Model):
     advisors = models.ManyToManyField(Advisor,
         blank=True,
         help_text=u"Please select advisor's name (or multiple co-advisors).<br>",
-        related_name='%(app_label)s_%(class)s_co_advisors',
+        related_name='%(app_label)s_%(class)s_records',
     )
 
     def clean(self):
