@@ -13,11 +13,17 @@ Source code is available on GitHub at `mfcovington/django-lab-members <https://g
 Installation
 ============
 
+**PyPI**
+
+.. code-block:: sh
+
+    pip install django-lab-members
+
 **GitHub**
 
 .. code-block:: sh
 
-    pip install https://github.com/mfcovington/djangocms-lab-members/releases/download/0.2.5/djangocms-lab-members-0.2.5.tar.gz
+    pip install https://github.com/mfcovington/djangocms-lab-members/releases/download/0.3.0/djangocms-lab-members-0.3.0.tar.gz
 
 
 Configuration
@@ -151,4 +157,4 @@ Usage
 - Visit: ``http://127.0.0.1:8000/lab_members/``
 
 
-*Version 0.2.5*
+*Version 0.3.0*
