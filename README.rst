@@ -13,6 +13,12 @@ Source code is available on GitHub at `mfcovington/django-lab-members <https://g
 Installation
 ============
 
+**PyPI**
+
+.. code-block:: sh
+
+    pip install django-lab-members
+
 **GitHub**
 
 .. code-block:: sh
