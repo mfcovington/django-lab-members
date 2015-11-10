@@ -34,8 +34,25 @@
             {% endif_has_tag %}
           </h2>
 
+          {% if not scientist.current %}
+            {% if scientist.alumni_current_title %}
+              <h4 class="alumni-info">
+                {{ scientist.alumni_current_title }}
+              </h4>
+            {% endif %}
+            {% if scientist.alumni_current_institution %}
+              <h4 class="alumni-info">
+                {{ scientist.alumni_current_institution }}
+              </h4>
+            {% endif %}
+          {% endif %}
+
           {% if scientist.title %}
-            <h4>{{ scientist.title }}</h4>
+            {% if scientist.current %}
+              <h4>{{ scientist.title }}</h4>
+            {% else %}
+              <h5 class="former-title">Former {{ scientist.title }}</h5>
+            {% endif %}
           {% endif %}
 
           <div class="scientist-contact-info">
@@ -43,7 +60,7 @@
 
             {% if scientist.website_url %}
               <p>
-                <a href="mailto:{{ scientist.email }}">
+                <a href="{{ scientist.website_url }}" target="_blank">
                   {% if scientist.website_name %}
                     {{ scientist.website_name }}
                   {% else %}
@@ -60,8 +77,8 @@
       </div>
 
       <div class="col-sm-12 col-md-9">
-        {% include "lab_members/_personal.html" %}
         {% include "lab_members/_research.html" %}
+        {% include "lab_members/_personal.html" %}
         {% include "lab_members/_education.html" %}
         {% include "lab_members/_employment.html" %}
         {% if_has_tag render_placeholder %}

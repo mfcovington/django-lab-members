@@ -57,6 +57,8 @@ class ScientistBase(models.Model):
         default=None,
         help_text=u'Please specify a title for this scientist',
         null=True,
+        on_delete=models.PROTECT,
+        related_name='current_scientist_set',
     )
 
     email = models.EmailField(u'email address',
@@ -73,12 +75,29 @@ class ScientistBase(models.Model):
         blank=True,
         help_text='Enter a name to display for the website. ' \
                   'Default is the URL of the site.',
-        max_length=25,
+        max_length=64,
     )
 
     current = models.BooleanField(u'current lab member',
         default=True,
         help_text=u'Please specify whether scientist is a current lab member',
+    )
+
+    alumni_current_institution = models.ForeignKey('lab_members.Institution',
+        blank=True,
+        default=None,
+        help_text=u"If former lab member, please enter the scientist's new institution",
+        null=True,
+        on_delete=models.PROTECT,
+    )
+
+    alumni_current_title = models.ForeignKey('lab_members.Position',
+        blank=True,
+        default=None,
+        help_text=u"If former lab member, please enter the scientist's new title",
+        null=True,
+        on_delete=models.PROTECT,
+        related_name='alumni_scientist_set',
     )
 
     alumni_redirect_url = models.URLField(u'alumni redirect URL',
@@ -91,6 +110,7 @@ class ScientistBase(models.Model):
         null=True,
         blank=True,
         help_text=u'Please upload an photo of this scientist',
+        on_delete=models.PROTECT,
     )
 
     visible = models.BooleanField('visible',
@@ -118,7 +138,7 @@ class Scientist(ScientistBase):
         )
 
         sidebar = PlaceholderField(u'scientist sidebar',
-            related_name='scientist sidebar'
+            related_name='scientist_sidebar',
         )
 
     else:
@@ -216,20 +236,22 @@ class Records(models.Model):
 
     institution = models.ForeignKey('lab_members.Institution',
         help_text=u'Please enter the institution attended',
+        on_delete=models.PROTECT,
     )
 
     field = models.ForeignKey(u'lab_members.Field',
         null=True,
         blank=True,
         help_text=u'Please specify the field studied',
+        on_delete=models.PROTECT,
     )
 
     scientist = models.ForeignKey('lab_members.Scientist')
 
-    advisor = models.ForeignKey('lab_members.Advisor',
-        null=True,
+    advisors = models.ManyToManyField(Advisor,
         blank=True,
-        help_text=u"Please specify advisor's name",
+        help_text=u"Please select advisor's name (or multiple co-advisors).<br>",
+        related_name='%(app_label)s_%(class)s_records',
     )
 
     def clean(self):
@@ -248,6 +270,7 @@ class Education(Records):
         null=True,
         blank=True,
         help_text=u'Please specify the degree granted',
+        on_delete=models.PROTECT,
     )
 
     year_start = models.IntegerField(u'year started',
@@ -255,7 +278,6 @@ class Education(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year started',
-        max_length=4,
     )
 
     year_end = models.IntegerField(u'year degree granted (or study ended)',
@@ -263,7 +285,6 @@ class Education(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year finished',
-        max_length=4,
     )
 
     def __str__(self):
@@ -288,13 +309,13 @@ class Employment(Records):
 
     position = models.ForeignKey('lab_members.Position',
         help_text=u'Please enter a title for this position',
+        on_delete=models.PROTECT,
     )
 
     year_start = models.IntegerField(u'year started',
         null=True,
         choices=YEARS,
         help_text=u'Please specify the year started',
-        max_length=4,
     )
 
     year_end = models.IntegerField(u'year ended',
@@ -302,7 +323,6 @@ class Employment(Records):
         blank=True,
         choices=YEARS,
         help_text=u'Please specify the year finished',
-        max_length=4,
     )
 
     def __str__(self):
