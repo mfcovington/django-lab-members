@@ -1,7 +1,7 @@
 Revision History
 ================
 
-0.3.0 2015-11-09
+0.3.0 2015-11-10
 
 - Add current title and institution for alumni
 - Allow multiple co-advisors for an Education/Employment record
