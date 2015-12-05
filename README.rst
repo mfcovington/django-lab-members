@@ -19,11 +19,11 @@ Installation
 
     pip install django-lab-members
 
-**GitHub**
+**GitHub (development branch)**
 
 .. code-block:: sh
 
-    pip install https://github.com/mfcovington/djangocms-lab-members/releases/download/0.3.0/djangocms-lab-members-0.3.0.tar.gz
+    pip install git+http://github.com/mfcovington/django-lab-members.git@develop
 
 
 Configuration
